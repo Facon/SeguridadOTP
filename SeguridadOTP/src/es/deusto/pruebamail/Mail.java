@@ -1,6 +1,7 @@
 package es.deusto.pruebamail;
 
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -40,7 +41,7 @@ public class Mail {
 					InternetAddress.parse("cppapprentice@gmail.com"));
 			message.setSubject("Contraseña OTP");
 			message.setText("Esta es la contraseña que tienes que copiar,"
-					+ "\n\n 1455669");
+					+ "\n\n " + String.valueOf(new Random().nextInt(9999)));
 
 			Transport.send(message);
 
