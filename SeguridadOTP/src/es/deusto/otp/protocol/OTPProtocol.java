@@ -2,7 +2,7 @@ package es.deusto.otp.protocol;
 
 import java.util.List;
 
-public class SP2PSProtocol {
+public class OTPProtocol {
 	
 	public static String processInput(String theInput) {
 	/*	String theOutput = SP2PSProtocol.getCode(-1, null);

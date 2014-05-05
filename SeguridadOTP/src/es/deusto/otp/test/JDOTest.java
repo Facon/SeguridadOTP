@@ -14,7 +14,7 @@ public class JDOTest {
 	
 	@Before
 	public void setUp() {
-		peer = new Client("Facon", "localhost");
+		peer = new Client("Asier", "localhost");
 	}
 	
 	@Test

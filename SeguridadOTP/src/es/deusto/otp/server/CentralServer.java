@@ -3,7 +3,7 @@ package es.deusto.otp.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import es.deusto.otp.protocol.SP2PSProtocol;
+import es.deusto.otp.protocol.OTPProtocol;
 import es.deusto.otp.server.db.DAO;
 import es.deusto.otp.server.db.JDO;
 import es.deusto.otp.server.socket.SocketManager;
@@ -29,7 +29,7 @@ public class CentralServer implements Runnable {
 		
 		while (running) {
 			msg = socket.receive();
-			msg = SP2PSProtocol.processInput(msg);
+			msg = OTPProtocol.processInput(msg);
 			socket.send(msg);
 		}
 		

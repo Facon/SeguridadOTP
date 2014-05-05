@@ -12,7 +12,7 @@ public class JDO implements DAO {
 	private PersistenceManagerFactory pmf;
 	
 	private JDO() {
-		pmf = JDOHelper.getPersistenceManagerFactory("SP2PJDO");
+		pmf = JDOHelper.getPersistenceManagerFactory("JDO");
 	}
 	
 	public static JDO getInstance() {
