@@ -1,15 +1,16 @@
 package es.deusto.otp.protocol;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OTPProtocol {
 	
 	public static String processInput(String theInput) {
-	/*	String theOutput = SP2PSProtocol.getCode(-1, null);
+		String theOutput = OTPProtocol.getCode(-1, null);
 		String[] command = theInput.split(" ");
 		String codeOP = command[0];
 
-		ArrayList<String> arg0 = new ArrayList<String>(6);
+		List<String> arg0 = new ArrayList<String>(6);
 
 		if (codeOP.equals("REGPEER")) {
 			if (command.length > 1) {
@@ -17,33 +18,33 @@ public class OTPProtocol {
 
 				arg0.add(command[1]);
 
-				theOutput = SP2PSProtocol.getCode(200, null);
+				theOutput = OTPProtocol.getCode(200, null);
 			}
 			else {
-				theOutput = SP2PSProtocol.getCode(400, null);
+				theOutput = OTPProtocol.getCode(400, null);
 			}
 		}
 		else if (codeOP.equals("PASS")) {
 			if (command.length > 1) {
 				if (user != null && user.getPassword().equals(command[1])) {
-					theOutput = SP2PSProtocol.getCode(202, null);
+					theOutput = OTPProtocol.getCode(202, null);
 				}
 				else {
 					user = null;
-					theOutput = SP2PSProtocol.getCode(402, null);
+					theOutput = OTPProtocol.getCode(402, null);
 				}
 			}
 			else {
-				theOutput = SP2PSProtocol.getCode(403, null);
+				theOutput = OTPProtocol.getCode(403, null);
 			}
 		}
 		else {
-			theOutput = SP2PSProtocol.getCode(-1, null);
+			theOutput = OTPProtocol.getCode(-1, null);
 		}
 
 		arg0.clear();
 
-		return theOutput;*/
+		return theOutput;
 		return null;
 	}
 

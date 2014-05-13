@@ -24,7 +24,7 @@ public class JDO implements DAO {
 	}
 
 	@Override
-	public void addPeer(Client peer) {
+	public void addClient(Client peer) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		

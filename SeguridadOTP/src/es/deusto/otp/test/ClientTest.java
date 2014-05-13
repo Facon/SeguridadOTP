@@ -11,7 +11,7 @@ public class ClientTest {
 	
 	@Test
 	public void test() {
-		Client client = new Client("Facon", "localhost");
+		Client client = new Client("Asier", "localhost");
 		
 		logger.info("{} {} {}", client.getId(), client.getNick(), client.getIp());
 		

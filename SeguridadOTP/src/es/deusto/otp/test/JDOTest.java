@@ -10,16 +10,16 @@ import es.deusto.otp.server.db.JDO;
 public class JDOTest {
 
 	private DAO jdo = JDO.getInstance();
-	private Client peer;
+	private Client client;
 	
 	@Before
 	public void setUp() {
-		peer = new Client("Asier", "localhost");
+		client = new Client("Asier", "localhost");
 	}
 	
 	@Test
 	public void test() {
-		jdo.addPeer(peer);
+		jdo.addClient(client);
 	}
 
 }
