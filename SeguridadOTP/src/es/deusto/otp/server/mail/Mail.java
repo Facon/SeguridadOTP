@@ -1,22 +1,19 @@
-package es.deusto.pruebamail;
+package es.deusto.otp.server.mail;
 
 import java.util.Properties;
-import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Mail {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public static void sendMail(String email, String otp) throws AddressException, MessagingException {
 		final String username = "alumnodeustoseguridad@gmail.com";
 		final String password = "seguridaddelainformacion";
 
@@ -32,25 +29,30 @@ public class Mail {
 						return new PasswordAuthentication(username, password);
 					}
 				});
+		
+		Message message = new MimeMessage(session);
+		message.setFrom(new InternetAddress("alumnodeustoseguridad@gmail.com"));
+		message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(email));
+		message.setSubject("Contraseña OTP");
+		message.setText("Esta es la contraseña que tienes que copiar," + "\n\n"
+				+ otp);
 
+		Transport.send(message);
+	}
+
+	public static void main(String[] args) {
 		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("alumnodeustoseguridad@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("cppapprentice@gmail.com"));
-			message.setSubject("Contraseña OTP");
-			message.setText("Esta es la contraseña que tienes que copiar,"
-					+ "\n\n " + String.valueOf(new Random().nextInt(9999)));
-
-			Transport.send(message);
-
-			System.out.println("Done");
-
+			sendMail("cppapprentice@gmail.com", "LALELILOLU");
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
+		
+		System.out.println("Done :-) .");
 	}
 
 }

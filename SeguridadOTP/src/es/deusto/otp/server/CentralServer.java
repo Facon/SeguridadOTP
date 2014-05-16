@@ -3,6 +3,7 @@ package es.deusto.otp.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import es.deusto.otp.protocol.AUTHProtocol;
 import es.deusto.otp.protocol.OTPProtocol;
 import es.deusto.otp.server.db.DAO;
 import es.deusto.otp.server.db.JDO;
@@ -12,6 +13,8 @@ import es.deusto.otp.server.socket.UDPSocketManager;
 public class CentralServer implements Runnable {
 	protected Logger logger = LoggerFactory.getLogger(CentralServer.class);
 	protected SocketManager socket;
+	protected AUTHProtocol auth = new AUTHProtocol();
+	protected OTPProtocol otp = new OTPProtocol();
 	protected DAO dao = JDO.getInstance();
 	
 	public CentralServer() {
@@ -29,7 +32,7 @@ public class CentralServer implements Runnable {
 		
 		while (running) {
 			msg = socket.receive();
-			msg = OTPProtocol.processInput(msg);
+			msg = auth.processInput(msg);
 			socket.send(msg);
 		}
 		

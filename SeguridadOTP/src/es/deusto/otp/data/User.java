@@ -6,22 +6,23 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class Client {
+public class User {
 	@PrimaryKey
 	protected String id;
 	protected String nick;
-	protected String ip;
+	protected String password;
+	protected String email;
 	
-	public Client(String nick, String ip) {
+	public User(String nick, String email) {
 		this.id = UUID.randomUUID().toString();
 		this.nick = nick;
-		this.ip = ip;
+		this.email = email;
 	}
 	
-	public Client(String id, String nick, String ip) {
+	public User(String id, String nick, String email) {
 		this.id = id;
 		this.nick = nick;
-		this.ip = ip;
+		this.email = email;
 	}
 
 	public String getId() {
@@ -40,11 +41,19 @@ public class Client {
 		this.nick = nick;
 	}
 
-	public String getIp() {
-		return ip;
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public String getEmail() {
+		return email;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setIp(String email) {
+		this.email = email;
 	}
 }

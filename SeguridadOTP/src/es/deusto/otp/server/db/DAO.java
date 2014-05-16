@@ -1,7 +1,8 @@
 package es.deusto.otp.server.db;
 
-import es.deusto.otp.data.Client;
+import es.deusto.otp.data.User;
 
 public interface DAO {
-	public void addClient(Client peer);
+	public void addUser(User user);
+	public User getUser(String nick);
 }
