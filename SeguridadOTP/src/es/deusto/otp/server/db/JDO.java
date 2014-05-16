@@ -1,5 +1,8 @@
 package es.deusto.otp.server.db;
 
+import java.util.Calendar;
+import java.util.List;
+
 import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -7,6 +10,7 @@ import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
+import es.deusto.otp.data.OTPCode;
 import es.deusto.otp.data.User;
 
 public class JDO implements DAO {
@@ -26,14 +30,14 @@ public class JDO implements DAO {
 	}
 
 	@Override
-	public void addUser(User peer) {
+	public void addUser(User user) {
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
 		try {
 			tx.begin();
 
-			pm.makePersistent(peer);
+			pm.makePersistent(user);
 
 			tx.commit();
 		} finally {
@@ -70,5 +74,52 @@ public class JDO implements DAO {
 		}
 
 		return user;
+	}
+
+	@Override
+	public void addOTPCode(OTPCode code) {
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+
+			pm.makePersistent(code);
+
+			tx.commit();
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+
+			}
+			pm.close();
+		}		
+	}
+
+	@Override
+	public OTPCode getOTPCode(User user) {
+		// Perform some query operations
+		OTPCode otpcode;
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		try {
+			tx.begin();
+			Extent<OTPCode> e = pm.getExtent(OTPCode.class);
+			Query q = pm.newQuery(e, "user == " + "\"" + user + "\" order by date desc limit 1");
+			q.setUnique(true);
+			otpcode = (OTPCode) q.execute();
+
+			tx.commit();
+		} catch (NullPointerException e) {
+			otpcode = null;
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+
+		return otpcode;
 	}
 }

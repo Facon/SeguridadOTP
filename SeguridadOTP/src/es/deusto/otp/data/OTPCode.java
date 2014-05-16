@@ -9,14 +9,14 @@ import javax.jdo.annotations.PrimaryKey;
 import org.apache.commons.codec.digest.DigestUtils;
 
 @PersistenceCapable(detachable="true")
-public class OTPdata {
+public class OTPCode {
 	@PrimaryKey
 	private User user;
 	@PrimaryKey
 	private Date date = Calendar.getInstance().getTime();
 	private String code;
 	
-	public OTPdata(User user){
+	public OTPCode(User user){
 		this.user = user;
 		
 		String digest = DigestUtils.sha1Hex(date.toString());
@@ -35,6 +35,6 @@ public class OTPdata {
 	}
 
 	public static void main(String[] args) {
-		new OTPdata(new User("Facon", "a@a.com"));
+		new OTPCode(new User("Facon", "a@a.com"));
 	}
 }
