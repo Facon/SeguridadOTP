@@ -12,6 +12,7 @@
 	<classpathentry kind="lib" path="lib/datanucleus-core-4.0.0-m2.jar"/>
 	<classpathentry kind="lib" path="lib/datanucleus-rdbms-4.0.0-m2.jar"/>
 	<classpathentry kind="lib" path="lib/jdo-api-3.1-rc1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

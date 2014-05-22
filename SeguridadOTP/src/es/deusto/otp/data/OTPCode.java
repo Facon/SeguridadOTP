@@ -11,19 +11,27 @@ import org.apache.commons.codec.digest.DigestUtils;
 @PersistenceCapable(detachable="true")
 public class OTPCode {
 	@PrimaryKey
+	private int id;
 	private User user;
-	@PrimaryKey
 	private Date date = Calendar.getInstance().getTime();
 	private String code;
 	
 	public OTPCode(User user){
-		this.user = user;
+		this.setUser(user);
 		
 		String digest = DigestUtils.sha1Hex(date.toString());
 		
 		int offset = 13;
 		
 		setCode(digest.substring(0 + offset, 5 + offset));
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getCode() {
@@ -35,6 +43,7 @@ public class OTPCode {
 	}
 
 	public static void main(String[] args) {
-		new OTPCode(new User("Facon", "a@a.com"));
+		OTPCode otp = new OTPCode(new User("Facon", "a@a.com"));
+		System.out.println(otp.getCode());
 	}
 }

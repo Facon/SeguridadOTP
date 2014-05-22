@@ -4,11 +4,13 @@ import java.util.UUID;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
 
-@PersistenceCapable
+@PersistenceCapable(detachable="true")
 public class User {
 	@PrimaryKey
 	protected String id;
+	@Unique
 	protected String nick;
 	protected String password;
 	protected String email;

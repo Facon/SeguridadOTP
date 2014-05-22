@@ -106,7 +106,8 @@ public class JDO implements DAO {
 		try {
 			tx.begin();
 			Extent<OTPCode> e = pm.getExtent(OTPCode.class);
-			Query q = pm.newQuery(e, "user == " + "\"" + user + "\" order by date desc limit 1");
+			Query q = pm.newQuery(e);
+			q.setFilter("user.nick == " + user.getNick());
 			q.setUnique(true);
 			otpcode = (OTPCode) q.execute();
 

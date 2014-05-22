@@ -6,7 +6,8 @@
 
     <!-- inventory JDO "unit" -->
     <persistence-unit name="JDO">
-        <class>es.deusto.otp.data.Client</class>
+        <class>es.deusto.otp.data.User</class>
+        <class>es.deusto.otp.data.OTPCode</class>
         <exclude-unlisted-classes/>
         <properties>
             <property name="javax.jdo.option.ConnectionDriverName" value="org.sqlite.JDBC"/>
