@@ -24,7 +24,9 @@ public class JDOTest {
 	
 	@Test
 	public void addUser() {
-		jdo.addUser(client);
+		if (jdo.getUser(client.getNick()) == null){
+			jdo.addUser(client);
+		}
 	}
 	
 	@Test
