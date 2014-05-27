@@ -19,7 +19,7 @@ public class OTPCode {
 	private Date date = Calendar.getInstance().getTime();
 	private String code;
 	
-	public OTPCode(User user){
+	public OTPCode(User user) {
 		this.setUser(user);
 		
 		String digest = DigestUtils.sha1Hex(date.toString());
