@@ -2,21 +2,12 @@
 <!DOCTYPE orm SYSTEM "file:/javax/jdo/orm.dtd">
 <orm>
     <package name="es.deusto.otp.data">
-        <class name="Inventory" table="INVENTORIES">
-            <field name="name">
-                <column name="INVENTORY_NAME" length="100"/>
-            </field>
-            <field name="products" table="INVENTORY_PRODUCTS">
-                <join/>
-            </field>
-        </class>
-
 		<class name="User" table="USERS">
-            <field name="id">
-                <column name="ID"/>
-            </field>
+			<primary-key>
+	    		<column name="id" jdbc-type="integer" primary-key="true"/>
+	    	</primary-key>
             <field name="nick">
-                <column name="NICK" length="256"/>
+                <column name="NICK" length="256" indexed="unique"/>
             </field>
             <field name="password">
                 <column name="PASSWORD" length="256"/>
@@ -25,27 +16,18 @@
                 <column name="EMAIL" length="256"/>
             </field>
         </class>
-		
-        <class name="Product" table="PRODUCTS">
-            <inheritance strategy="new-table"/>
-            <field name="id">
-                <column name="PRODUCT_ID"/>
+        <class name="OTPCode" table="OTPCODE">
+        	<primary-key>
+	    		<column name="id" jdbc-type="integer" primary-key="true"/>
+	    	</primary-key>
+            <field name="user" persistence-capable="persistent">
+                <column name="USER_ID"/>
             </field>
-            <field name="name">
-                <column name="PRODUCT_NAME" length="100"/>
+            <field name="date">
+                <column name="DATE"/>
             </field>
-        </class>
-
-        <class name="Book" table="BOOKS">
-            <inheritance strategy="new-table"/>
-            <field name="author">
-                <column length="40"/>
-            </field>
-            <field name="isbn">
-                <column length="20" jdbc-type="CHAR"/>
-            </field>
-            <field name="publisher">
-                <column length="40"/>
+            <field name="code">
+                <column name="CODE"/>
             </field>
         </class>
     </package>

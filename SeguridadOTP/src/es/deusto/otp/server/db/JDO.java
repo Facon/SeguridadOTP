@@ -1,8 +1,5 @@
 package es.deusto.otp.server.db;
 
-import java.util.Calendar;
-import java.util.List;
-
 import javax.jdo.Extent;
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -58,10 +55,11 @@ public class JDO implements DAO {
 
 		try {
 			tx.begin();
-			Extent<User> e = pm.getExtent(User.class);
-			Query q = pm.newQuery(e, "nick == " + "\"" + nick + "\"");
+			Query q = pm.newQuery(User.class);
+			q.setFilter("nick == " + nick);
 			q.setUnique(true);
 			user = (User) q.execute();
+			System.out.println(q.toString());
 
 			tx.commit();
 		} catch (NullPointerException e) {
@@ -89,8 +87,8 @@ public class JDO implements DAO {
 			tx.commit();
 		} finally {
 			if (tx.isActive()) {
+				System.out.println(tx);
 				tx.rollback();
-
 			}
 			pm.close();
 		}		

@@ -3,18 +3,12 @@ package es.deusto.otp.data;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
-import javax.jdo.annotations.Persistent;
-import javax.jdo.annotations.PrimaryKey;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
 @PersistenceCapable(detachable="true")
 public class OTPCode {
-	@PrimaryKey
-	@Persistent(valueStrategy=IdGeneratorStrategy.IDENTITY)
-	private int id;
 	private User user;
 	private Date date = Calendar.getInstance().getTime();
 	private String code;
