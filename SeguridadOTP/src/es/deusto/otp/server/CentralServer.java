@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import es.deusto.otp.protocol.AUTHProtocol;
 import es.deusto.otp.protocol.OTPProtocol;
 import es.deusto.otp.server.db.DAO;
-import es.deusto.otp.server.db.JDO;
+import es.deusto.otp.server.db.ORMLite;
 import es.deusto.otp.server.socket.SocketManager;
 import es.deusto.otp.server.socket.UDPSocketManager;
 
@@ -15,7 +15,7 @@ public class CentralServer implements Runnable {
 	protected SocketManager socket;
 	protected AUTHProtocol auth = new AUTHProtocol();
 	protected OTPProtocol otp = new OTPProtocol();
-	protected DAO dao = JDO.getInstance();
+	protected DAO dao = ORMLite.getInstance();
 	
 	public CentralServer() {
 		socket = new UDPSocketManager();

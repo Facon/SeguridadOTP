@@ -8,12 +8,12 @@ import javax.mail.internet.AddressException;
 
 import es.deusto.otp.data.User;
 import es.deusto.otp.server.db.DAO;
-import es.deusto.otp.server.db.JDO;
+import es.deusto.otp.server.db.ORMLite;
 import es.deusto.otp.server.mail.Mail;
 
 public class OTPProtocol {
 	private OTPState state = OTPState.WAITING;
-	private DAO dao = JDO.getInstance();
+	private DAO dao = ORMLite.getInstance();
 	
 	public OTPProtocol() {
 		

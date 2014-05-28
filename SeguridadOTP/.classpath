@@ -7,12 +7,11 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.6.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.6.jar"/>
-	<classpathentry kind="lib" path="lib/sqlite-jdbc4-3.8.2-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/datanucleus-api-jdo-4.0.0-m2.jar"/>
-	<classpathentry kind="lib" path="lib/datanucleus-core-4.0.0-m2.jar"/>
-	<classpathentry kind="lib" path="lib/datanucleus-rdbms-4.0.0-m2.jar"/>
 	<classpathentry kind="lib" path="lib/jdo-api-3.1-rc1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="lib/ormlite-jdbc-4.48.jar"/>
+	<classpathentry kind="lib" path="lib/ormlite-core-4.48.jar"/>
+	<classpathentry kind="lib" path="lib/sqlite-jdbc-3.7.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

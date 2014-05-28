@@ -1,12 +1,24 @@
 package es.deusto.otp.data;
 
-import javax.jdo.annotations.PersistenceCapable;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-@PersistenceCapable(detachable="true")
+@DatabaseTable(tableName="USERS")
 public class User {
+	public static final String NICK = "nick";
+	public static final String PASSWORD = "password";
+	public static final String EMAIL = "email";
+	
+	@DatabaseField(id=true)
 	protected String nick;
+	@DatabaseField
 	protected String password;
+	@DatabaseField
 	protected String email;
+	
+	public User() {
+		
+	}
 	
 	public User(String nick, String email) {
 		this.nick = nick;

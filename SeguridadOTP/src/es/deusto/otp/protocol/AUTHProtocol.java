@@ -5,12 +5,12 @@ import java.util.List;
 
 import es.deusto.otp.data.User;
 import es.deusto.otp.server.db.DAO;
-import es.deusto.otp.server.db.JDO;
+import es.deusto.otp.server.db.ORMLite;
 
 public class AUTHProtocol {
 	private AUTHState state = AUTHState.WAITING;
 	private User user;
-	private DAO dao = JDO.getInstance();
+	private DAO dao = ORMLite.getInstance();
 	
 	public AUTHProtocol() {
 		
