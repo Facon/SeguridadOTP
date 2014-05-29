@@ -26,7 +26,9 @@ public class MainProgram {
 			InputStreamReader isr = new InputStreamReader(System.in);
 			BufferedReader br = new BufferedReader (isr);
 			
-			out.println("OTP " + br.readLine());
+			String code = br.readLine();
+			
+			out.println("OTP " + code);
 			System.out.println(in.readLine());
 			
 			out.close();

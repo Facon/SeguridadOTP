@@ -52,6 +52,14 @@ public class OTPCode {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public Date getDate() {
+		return date;
+	}
+
+	public void setCode(Date date) {
+		this.date = date;
+	}
 
 	public static void main(String[] args) {
 		OTPCode otp = new OTPCode(new User("Facon", "a@a.com"));

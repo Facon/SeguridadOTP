@@ -1,6 +1,9 @@
 package es.deusto.otp.server.db;
 
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -85,7 +88,24 @@ public class ORMLite implements DAO {
 	public OTPCode getOTPCode(User user) {
 		try {
 			Dao<OTPCode, String> otpcodeDao = DaoManager.createDao(cs, OTPCode.class);
-			return otpcodeDao.queryForFirst(otpcodeDao.queryBuilder().where().eq(OTPCode.USER, user).prepare());
+			List<OTPCode> list = otpcodeDao.query(otpcodeDao.queryBuilder().where().eq("user_id", user.getNick()).prepare());
+			
+			Date date = new Date(10000);
+			OTPCode otp, otp2;
+			otp = null;
+			
+			Iterator<OTPCode> iter = list.iterator();
+			
+			while (iter.hasNext()) {
+				otp2 = iter.next();
+				
+				if (otp2.getDate().after(date)) {
+					date = otp2.getDate();
+					otp = otp2;
+				}
+			}
+			
+			return otp;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

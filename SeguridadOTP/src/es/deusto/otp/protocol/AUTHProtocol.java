@@ -120,6 +120,7 @@ public class AUTHProtocol implements Protocol {
 				BufferedReader in2 = new BufferedReader(new InputStreamReader(sock2.getInputStream()));
 				
 				out2.println("USER " + user.getNick());
+				System.out.println(in2.readLine());
 				
 				out2.close();
 				in2.close();
