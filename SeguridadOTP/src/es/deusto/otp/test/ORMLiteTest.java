@@ -36,7 +36,7 @@ public class ORMLiteTest {
 		logger.info("{}", code1.getUser().getNick());
 		jdo.addOTPCode(code1);
 		System.out.println("OK");
-		System.out.println(jdo.getUser(client.getNick()));
+		System.out.println(jdo.getUser(client.getNick()).getNick());
 	}
 
 }

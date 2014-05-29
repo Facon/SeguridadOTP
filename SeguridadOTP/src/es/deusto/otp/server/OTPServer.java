@@ -3,18 +3,18 @@ package es.deusto.otp.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import es.deusto.otp.protocol.AUTHProtocol;
+import es.deusto.otp.protocol.OTPProtocol;
 import es.deusto.otp.server.socket.SocketManager;
 
-public class CentralServer implements Runnable {
-	protected Logger logger = LoggerFactory.getLogger(CentralServer.class);
+public class OTPServer implements Runnable {
+	protected Logger logger = LoggerFactory.getLogger(OTPServer.class);
 	protected SocketManager socket;
 	
-	public CentralServer() {
-		socket = new SocketManager(new AUTHProtocol(), 4445);
+	public OTPServer() {
+		socket = new SocketManager(new OTPProtocol(), 4446);
 	}
 	
-	public CentralServer(SocketManager socket) {
+	public OTPServer(SocketManager socket) {
 		this.socket = socket;
 	}
 	
@@ -26,7 +26,7 @@ public class CentralServer implements Runnable {
 	}
 	
 	public static void main(String[] args) {
-		CentralServer s = new CentralServer();
+		OTPServer s = new OTPServer();
 
 		new Thread(s).start();
 

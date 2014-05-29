@@ -1,5 +1,11 @@
 package es.deusto.otp.protocol;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +13,9 @@ import es.deusto.otp.data.User;
 import es.deusto.otp.server.db.DAO;
 import es.deusto.otp.server.db.ORMLite;
 
-public class AUTHProtocol {
+public class AUTHProtocol implements Protocol {
 	private AUTHState state = AUTHState.WAITING;
+	private OTPProtocol protocol = new OTPProtocol();
 	private User user;
 	private DAO dao = ORMLite.getInstance();
 	
@@ -67,7 +74,7 @@ public class AUTHProtocol {
 		case OTP:
 			if (codeOP.equals("OTP")) {
 				if (command.length > 1) {
-					if (user != null && user.getPassword().equals(command[1])) {
+					if (dao.getOTPCode(user).getCode().equals(command[1])) {
 						theOutput = getCode(203, null);
 						state = AUTHState.READY;
 					} else {
@@ -106,6 +113,21 @@ public class AUTHProtocol {
 			break;
 		case 202:
 			theOutput = "202 OK CORRECT PASSWORD";
+			
+			try {
+				Socket sock2 = new Socket("127.0.0.1", 4446);
+				PrintWriter out2 = new PrintWriter(sock2.getOutputStream(), true);
+				BufferedReader in2 = new BufferedReader(new InputStreamReader(sock2.getInputStream()));
+				
+				out2.println("USER " + user.getNick());
+				
+				out2.close();
+				in2.close();
+				sock2.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case 203:
 			theOutput = "203 OK CORRECT OTP";

@@ -6,12 +6,13 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import es.deusto.otp.data.OTPCode;
 import es.deusto.otp.data.User;
 import es.deusto.otp.server.db.DAO;
 import es.deusto.otp.server.db.ORMLite;
 import es.deusto.otp.server.mail.Mail;
 
-public class OTPProtocol {
+public class OTPProtocol implements Protocol {
 	private OTPState state = OTPState.WAITING;
 	private DAO dao = ORMLite.getInstance();
 	
@@ -31,13 +32,15 @@ public class OTPProtocol {
 			if (codeOP.equals("USER")) {
 				if (command.length > 1) {
 					User user = dao.getUser(command[1]);
+					OTPCode otp = new OTPCode(user);
 					
-					if (user != null && user.getPassword().equals(command[1])) {
+					if (user != null) {
 						arg0.add(command[1]);
-												
-						// TODO Comunicación con OTP
+						
+						dao.addOTPCode(otp);
+						
 						try {
-							Mail.sendMail(user.getEmail(), "NADA");
+							Mail.sendMail(user.getEmail(), otp.getCode());
 						} catch (AddressException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
