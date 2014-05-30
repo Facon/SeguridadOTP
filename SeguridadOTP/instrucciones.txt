@@ -1,0 +1,5 @@
+1º Ejecutar CentralServer.java
+2º Ejecutar OTPServer.java
+3º Ejecutar MainProgram.java
+4º Introducir datos de usuario en la base de datos SQLite (bd.sqlite)
+5º Meter datos y debería logear con usuario + contraseña y luego con un código que se habrá enviado al mail.
