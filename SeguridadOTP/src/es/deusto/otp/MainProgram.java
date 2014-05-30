@@ -7,9 +7,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import es.deusto.otp.server.CentralServer;
-import es.deusto.otp.server.OTPServer;
-
 public class MainProgram {
 
 	public static void main(String[] args) {		

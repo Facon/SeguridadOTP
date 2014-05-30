@@ -5,17 +5,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import es.deusto.otp.data.User;
 import es.deusto.otp.server.db.DAO;
 import es.deusto.otp.server.db.ORMLite;
 
 public class AUTHProtocol implements Protocol {
+	Logger logger = LoggerFactory.getLogger(AUTHProtocol.class);
+	
 	private AUTHState state = AUTHState.WAITING;
-	private OTPProtocol protocol = new OTPProtocol();
 	private User user;
 	private DAO dao = ORMLite.getInstance();
 	
@@ -120,7 +123,7 @@ public class AUTHProtocol implements Protocol {
 				BufferedReader in2 = new BufferedReader(new InputStreamReader(sock2.getInputStream()));
 				
 				out2.println("USER " + user.getNick());
-				System.out.println(in2.readLine());
+				logger.debug(in2.readLine());
 				
 				out2.close();
 				in2.close();

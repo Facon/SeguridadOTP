@@ -11,6 +11,9 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Mail {
 
 	public static void sendMail(String email, String otp) throws AddressException, MessagingException {
@@ -42,6 +45,8 @@ public class Mail {
 	}
 
 	public static void main(String[] args) {
+		Logger logger = LoggerFactory.getLogger(Mail.class);
+		
 		try {
 			sendMail("cppapprentice@gmail.com", "LALELILOLU");
 		} catch (AddressException e) {
@@ -52,7 +57,7 @@ public class Mail {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Done :-) .");
+		logger.info("Done :-) .");
 	}
 
 }
